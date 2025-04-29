@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>实时倒计时</title>
+  <title>考试倒计时</title>
   <style>
     :root {
       --klein-main: #002FA7;
@@ -24,13 +24,13 @@
       width: 100vw;
       height: 100vh;
       background: var(--klein-bg);
-      font-family: serif!important;
+      font-family: serif !important;
       color: var(--klein-main);
       box-sizing: border-box;
       overflow-x: hidden;
     }
 
-   .container {
+    .container {
       max-width: 1200px;
       margin: 0 auto;
       min-height: 100vh;
@@ -42,7 +42,7 @@
       align-items: center;
     }
 
-   .title {
+    .title {
       text-align: center;
       font-size: 4vw;
       font-weight: bold;
@@ -52,13 +52,13 @@
       text-shadow: 1px 2px 6px var(--klein-extra-light);
     }
 
-   .current-time {
+    .current-time {
       margin-bottom: 2vw;
       font-size: 1.8vw;
       color: var(--klein-main);
     }
 
-   .cd-table-wrap {
+    .cd-table-wrap {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
@@ -119,79 +119,80 @@
       background: #f7fafd;
     }
 
-   .cd-remain {
+    .cd-remain {
       color: var(--klein-dark);
       font-weight: bold;
       font-size: 2vw;
     }
 
     @media (max-width: 700px) {
-  .title {
-    font-size: 7vw;
-  }
+      .title {
+        font-size: 7vw;
+      }
 
-  .current-time {
-    font-size: 3vw;
-  }
+      .current-time {
+        font-size: 3vw;
+      }
 
-  .cd-table-wrap {
-    max-width: 98vw;
-  }
+      .cd-table-wrap {
+        max-width: 98vw;
+      }
 
-  table.cd-table {
-    font-size: 3vw;
-  }
+      table.cd-table {
+        font-size: 3vw;
+      }
 
-  table.cd-table th,
-  table.cd-table td {
-    font-size: 1em;
-    padding: 0.8em 0.2em;
-  }
+      table.cd-table th,
+      table.cd-table td {
+        font-size: 1em;
+        padding: 0.8em 0.2em;
+      }
 
-  .cd-remain {
-    font-size: 4vw;
-  }
+      .cd-remain {
+        font-size: 4vw;
+      }
 
-  /* 确保小屏幕上能更好地换行 */
-  table.cd-table td {
-    white-space: normal;
-    word-wrap: break-word;
-  }
-}
+      /* 这一段用以确保在小屏幕上能更好地换行 */
+      table.cd-table td {
+        white-space: normal;
+        word-wrap: break-word;
+      }
+    }
 
-@media (max-width: 450px) {
-  .title {
-    font-size: 9vw;
-  }
+    @media (max-width: 450px) {
+      .title {
+        font-size: 9vw;
+      }
 
-  .current-time {
-    font-size: 4vw;
-  }
+      .current-time {
+        font-size: 4vw;
+      }
 
-  .cd-table-wrap {
-    max-width: 100vw;
-  }
+      .cd-table-wrap {
+        max-width: 100vw;
+      }
 
-  table.cd-table {
-    font-size: 4vw;
-  }
+      table.cd-table {
+        font-size: 4vw;
+      }
 
-  table.cd-table th,
-  table.cd-table td {
-    font-size: 0.9em;
-    padding: 0.5em 0.1em;
-  }
+      table.cd-table th,
+      table.cd-table td {
+        font-size: 0.9em;
+        padding: 0.5em 0.1em;
+      }
 
-  .cd-remain {
-    font-size: 5vw;
-  }
+      .cd-remain {
+        font-size: 5vw;
+      }
 
-  /* 更好的换行和断词处理 */
-  table.cd-table td {
-    white-space: normal;
-    word-wrap: break-word;
-  }
-}
+      /* 换行、断词处理 */
+      table.cd-table td {
+        white-space: normal;
+        word-wrap: break-word;
+      }
+    }
+
     ::-webkit-scrollbar {
       width: 6px;
       background: #f0f0f0;
@@ -201,23 +202,24 @@
       background: var(--klein-extra-light);
       border-radius: 6px;
     }
-  .grade-tag {
-  display: inline-block;
-  background-color: var(--klein-main);
-  color: white;
-  border-radius: 8px;
-  padding: 0.2em 0.6em;
-  font-size: 0.9em;
-  margin: 0 0.4em 0.4em 0;  /* 增加右间距和底部间距 */
-  box-shadow: 0 1px 3px rgba(0, 47, 167, 0.3);
-  white-space: nowrap;
- }
+
+    .grade-tag {
+      display: inline-block;
+      background-color: var(--klein-main);
+      color: white;
+      border-radius: 8px;
+      padding: 0.2em 0.6em;
+      font-size: 0.9em;
+      margin: 0 0.4em 0.4em 0; /* 增加右间距和底部间距 */
+      box-shadow: 0 1px 3px rgba(0, 47, 167, 0.3);
+      white-space: nowrap;
+    }
   </style>
 </head>
 
 <body>
   <div class="container" id="root">
-    <div class="title">实时倒计时</div>
+    <div class="title">考试倒计时</div>
     <div class="current-time"></div>
     <div class="cd-table-wrap">
       <table class="cd-table">
@@ -240,6 +242,7 @@
     <div class="bottom-text">By Fishp | All rights reserved.</div>
     <div class="bottom-text">时间已经过校准，和现实误差控制在100毫秒以内</div>
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
   <script>
     function formatDate(date) {
@@ -265,12 +268,12 @@
         return {
           created: (new Date()).toISOString().slice(0, 10),
           countdownList: [
-  { name: '<span class="grade-tag">初一</span> <span class="grade-tag">初二</span> 5月份月考<br><span class="grade-tag">初三</span> 5月中考适应性考试', target: "2025/05/26 09:00:00" },
-  { name: '<span class="grade-tag">初三</span> 体育中考', target: "2025/05/21 00:00:00" },
-  { name: '<span class="grade-tag">初二</span> 2025地生中考<br><span class="grade-tag">初三</span> 2025中考', target: "2025/06/27 09:00:00" },
-  { name: '<span class="grade-tag">初一</span> <span class="grade-tag">初二</span> <span class="grade-tag">初三</span> 放暑假🥳', target: "2025/07/01 00:00:00" },
-  { name: '<span class="grade-tag">初二</span> 2026中考', target: "2026/06/24 00:00:00" }
-],
+            { name: '<span class="grade-tag">初一</span> <span class="grade-tag">初二</span> 5月份月考<br><span class="grade-tag">初三</span> 5月中考适应性考试', target: "2025/05/26 09:00:00" },
+            { name: '<span class="grade-tag">初三</span> 体育中考', target: "2025/05/21 00:00:00" },
+            { name: '<span class="grade-tag">初二</span> 2025地生中考<br><span class="grade-tag">初三</span> 2025中考', target: "2025/06/27 09:00:00" },
+            { name: '<span class="grade-tag">初一</span> <span class="grade-tag">初二</span> <span class="grade-tag">初三</span> 放暑假🥳', target: "2025/07/01 00:00:00" },
+            { name: '<span class="grade-tag">初二</span> 2026中考', target: "2026/06/24 00:00:00" }
+          ],
           countdowns: []
         }
       },
@@ -310,7 +313,7 @@
     }
 
     function pad(num) {
-      return num < 10? '0' + num : num;
+      return num < 10 ? '0' + num : num;
     }
 
     function formatDateStr(date) {
