@@ -215,7 +215,8 @@
         </tbody>
       </table>
     </div>
-    <div class="bottom-text">By Fishp | Powered by GitHub</div>
+    <div class="bottom-text">作者：Fishp</div>
+    <div class="bottom-text">本页面内时间已经过校准，和现实误差控制在100毫秒以内</div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
   <script>
@@ -226,7 +227,7 @@
       const hours = String(date.getHours()).padStart(2, '0');
       const minutes = String(date.getMinutes()).padStart(2, '0');
       const seconds = String(date.getSeconds()).padStart(2, '0');
-      return `现在是${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+      return `现在是中国北京时间${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     }
 
     function updateCurrentTime() {
