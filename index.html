@@ -309,7 +309,7 @@
       var minutes = Math.floor(ms / (60 * 1000));
       ms %= (60 * 1000);
       var seconds = Math.floor(ms / 1000);
-      return `${days}天 ${hours}时 ${minutes}分 ${seconds}秒`;
+      return `${days}天 ${hours}:${minutes}:${seconds}`;
     }
 
     function pad(num) {
