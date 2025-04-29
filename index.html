@@ -49,7 +49,7 @@ function formatRemain(ms) {
   var minutes = Math.floor(ms / (60*1000));
   ms %= (60*1000);
   var seconds = Math.floor(ms / 1000);
-  return `${days}天 ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+  return `${days}天 ${pad(hours)}小时 ${pad(minutes)}分钟 ${pad(seconds)}秒`;
 }
 function formatDateStr(date) {
   var d = new Date(date);
