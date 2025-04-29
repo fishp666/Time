@@ -3,14 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>倒计时表格</title>
+  <title>倒计时</title>
   <style>
+    :root {
+      --klein-main: #002FA7;
+      --klein-dark: #001C61;
+      --klein-medium: #3559A8;
+      --klein-light: #4682BF;
+      --klein-extra-light: #A2BFFF;
+      --klein-bg: #f5f8ff;
+      --klein-border: #A2BFFF;
+    }
     html, body {
       margin: 0; padding: 0;
       width: 100vw; height: 100vh;
-      background: #fff;
-      font-family: huangyou, sans-serif;
-      color: #002FA7;
+      background: var(--klein-bg);
+      font-family: huangyou, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      color: var(--klein-main);
       box-sizing: border-box;
       overflow-x: hidden;
     }
@@ -31,7 +40,8 @@
       font-weight: bold;
       margin-bottom: 4vw;
       letter-spacing: 0.5vw;
-      color: #002FA7;
+      color: var(--klein-main);
+      text-shadow: 1px 2px 6px var(--klein-extra-light);
     }
     .cd-table-wrap {
       width: 100%;
@@ -39,8 +49,8 @@
       margin: 0 auto;
       background: #fff;
       border-radius: 20px;
-      box-shadow: 0 2px 10px rgba(0,47,167,0.08);
-      border: 1.5px solid #002FA7;
+      box-shadow: 0 2px 18px rgba(0,47,167,0.08);
+      border: 2.5px solid var(--klein-border);
       overflow: hidden;
       box-sizing: border-box;
     }
@@ -51,26 +61,39 @@
       text-align: center;
       font-size: 1.7vw;
       background: #fff;
-      color: #002FA7;
+      color: var(--klein-main);
     }
     table.cd-table th, table.cd-table td {
       padding: 1.2em 0.5em;
-      border-bottom: 1px solid #e3f1fb;
+      border-bottom: 1px solid var(--klein-extra-light);
     }
     table.cd-table th {
-      background: #f6fafd;
+      background: linear-gradient(90deg, var(--klein-light) 0%, var(--klein-extra-light) 100%);
       font-weight: bold;
-      color: #002FA7;
+      color: #fff;
       font-size: 2vw;
+      letter-spacing: 1px;
+      text-shadow: 0 1px 3px var(--klein-medium);
     }
     table.cd-table tr:last-child td {
       border-bottom: none;
     }
     .cd-remain {
-      color: #002FA7;
+      color: var(--klein-dark);
       font-weight: bold;
       font-size: 2vw;
       letter-spacing: 1px;
+      background: linear-gradient(90deg, var(--klein-extra-light) 0%, #fff 100%);
+      border-radius: 8px;
+      display: inline-block;
+      padding: 0.1em 0.6em;
+      box-shadow: 0 1px 6px rgba(0,47,167,0.04);
+    }
+    table.cd-table td {
+      background: linear-gradient(90deg, #fff 60%, var(--klein-bg) 100%);
+    }
+    table.cd-table tr:nth-child(even) td {
+      background: linear-gradient(90deg, var(--klein-bg) 60%, #fff 100%);
     }
     @media (max-width: 700px) {
       .title { font-size: 7vw; }
@@ -87,7 +110,7 @@
       .cd-remain { font-size: 5vw;}
     }
     ::-webkit-scrollbar { width: 6px; background: #f0f0f0;}
-    ::-webkit-scrollbar-thumb { background: #b0d4f9; border-radius: 6px;}
+    ::-webkit-scrollbar-thumb { background: var(--klein-extra-light); border-radius: 6px;}
   </style>
 </head>
 <body>
@@ -98,7 +121,7 @@
         <thead>
           <tr>
             <th>名称</th>
-            <th>剩余时间</th>
+            <th>剩余/已过时间</th>
             <th>目标日期</th>
           </tr>
         </thead>
@@ -115,7 +138,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
 <script>
 function formatRemain(ms) {
-  if (ms < 0) ms = 0;
+  ms = Math.abs(ms);
   var days = Math.floor(ms / (24*60*60*1000));
   ms %= (24*60*60*1000);
   var hours = Math.floor(ms / (60*60*1000));
@@ -149,9 +172,10 @@ new Vue({
       this.countdowns = this.countdownList.map(item => {
         var targetDate = new Date(item.target);
         var remainMs = targetDate - now;
+        var remainStr = formatRemain(remainMs);
         return {
           name: item.name,
-          remainStr: formatRemain(remainMs),
+          remainStr: remainStr,
           targetDateStr: formatDateStr(targetDate)
         }
       });
