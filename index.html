@@ -176,13 +176,13 @@
 
 <body>
   <div class="container" id="root">
-    <div class="title">倒计时表格</div>
+    <div class="title">256班倒计时</div>
     <div class="cd-table-wrap">
       <table class="cd-table">
         <thead>
           <tr>
             <th>名称</th>
-            <th>剩余时间</th>
+            <th>剩余/已过时间</th>
             <th>目标日期</th>
           </tr>
         </thead>
@@ -195,6 +195,7 @@
         </tbody>
       </table>
     </div>
+    <div class="bottom-text">By Fishp | Powered by GitHub</div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
   <script>
@@ -225,9 +226,9 @@
         return {
           created: (new Date()).toISOString().slice(0, 10),
           countdownList: [
-            { name: "中考", target: "2025/06/20 00:00:00" },
-            { name: "高考", target: "2026/06/07 00:00:00" },
-            { name: "2025年元旦", target: "2025/01/01 00:00:00" }
+            { name: "2025地生中考", target: "2025/06/27 00:00:00" },
+            { name: "2026初三中考", target: "2026/06/24 00:00:00" },
+            { name: "放暑假🥳", target: "2025/07/01 00:00:00" }
           ],
           countdowns: []
         }
