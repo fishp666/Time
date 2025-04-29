@@ -5,13 +5,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>考试倒计时</title>
-  <style>
-  @import url('https://cdn.jsdelivr.net/npm/ali-fonts@2.0.0/ali-puhuiti.css');
 
-  body {
-  font-family: 'AliPuHuiTi', sans-serif !important;
-  }
-    
+  <!-- 引入阿里巴巴普惠体字体 -->
+  <style>
+    @import url('https://cdn.jsdelivr.net/npm/ali-fonts@2.0.0/ali-puhuiti.css');
+
+    /* 设置全局字体为阿里巴巴普惠体 */
+    body {
+      font-family: 'AliPuHuiTi', sans-serif !important;
+    }
+
+    /* 设置倒计时表格、标题和时间部分使用阿里巴巴普惠体 */
+    .cd-table td, .cd-table th, .title, .current-time {
+      font-family: 'AliPuHuiTi', sans-serif !important;
+    }
+
     :root {
       --klein-main: #002FA7;
       --klein-dark: #001C61;
@@ -131,6 +139,7 @@
       font-size: 2vw;
     }
 
+    /* 以下为媒体查询部分，确保移动端适配 */
     @media (max-width: 700px) {
       .title {
         font-size: 7vw;
@@ -158,7 +167,6 @@
         font-size: 4vw;
       }
 
-      /* 这一段用以确保在小屏幕上能更好地换行 */
       table.cd-table td {
         white-space: normal;
         word-wrap: break-word;
@@ -192,7 +200,6 @@
         font-size: 5vw;
       }
 
-      /* 换行、断词处理 */
       table.cd-table td {
         white-space: normal;
         word-wrap: break-word;
@@ -216,7 +223,7 @@
       border-radius: 8px;
       padding: 0.2em 0.6em;
       font-size: 0.9em;
-      margin: 0 0.4em 0.4em 0; /* 增加右间距和底部间距 */
+      margin: 0 0.4em 0.4em 0;
       box-shadow: 0 1px 3px rgba(0, 47, 167, 0.3);
       white-space: nowrap;
     }
