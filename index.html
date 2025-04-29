@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>倒计时</title>
+  <title>倒计时表格</title>
   <style>
     :root {
       --klein-main: #002FA7;
@@ -11,8 +11,9 @@
       --klein-medium: #3559A8;
       --klein-light: #4682BF;
       --klein-extra-light: #A2BFFF;
-      --klein-bg: #f5f8ff;
-      --klein-border: #A2BFFF;
+      --klein-bg: #f4f7fb;
+      --klein-border: #4682BF;
+      --klein-gradient: linear-gradient(90deg, #3559A8 0%, #4682BF 50%, #A2BFFF 100%);
     }
     html, body {
       margin: 0; padding: 0;
@@ -50,7 +51,7 @@
       background: #fff;
       border-radius: 20px;
       box-shadow: 0 2px 18px rgba(0,47,167,0.08);
-      border: 2.5px solid var(--klein-border);
+      border: 2px solid var(--klein-border);
       overflow: hidden;
       box-sizing: border-box;
     }
@@ -68,32 +69,36 @@
       border-bottom: 1px solid var(--klein-extra-light);
     }
     table.cd-table th {
-      background: linear-gradient(90deg, var(--klein-light) 0%, var(--klein-extra-light) 100%);
-      font-weight: bold;
+      background: var(--klein-gradient);
       color: #fff;
+      font-weight: bold;
       font-size: 2vw;
       letter-spacing: 1px;
       text-shadow: 0 1px 3px var(--klein-medium);
+      border-bottom: 2px solid var(--klein-light);
     }
     table.cd-table tr:last-child td {
       border-bottom: none;
+    }
+    table.cd-table td {
+      background: #fff;
+      color: var(--klein-main);
+      font-weight: 500;
+      font-size: 1.7vw;
+      transition: background 0.2s;
+    }
+    table.cd-table tr:nth-child(even) td {
+      background: #f7fafd;
     }
     .cd-remain {
       color: var(--klein-dark);
       font-weight: bold;
       font-size: 2vw;
-      letter-spacing: 1px;
-      background: linear-gradient(90deg, var(--klein-extra-light) 0%, #fff 100%);
-      border-radius: 8px;
-      display: inline-block;
-      padding: 0.1em 0.6em;
-      box-shadow: 0 1px 6px rgba(0,47,167,0.04);
-    }
-    table.cd-table td {
-      background: linear-gradient(90deg, #fff 60%, var(--klein-bg) 100%);
-    }
-    table.cd-table tr:nth-child(even) td {
-      background: linear-gradient(90deg, var(--klein-bg) 60%, #fff 100%);
+      background: none;
+      border-radius: 0;
+      display: inline;
+      padding: 0;
+      box-shadow: none;
     }
     @media (max-width: 700px) {
       .title { font-size: 7vw; }
@@ -101,6 +106,7 @@
       table.cd-table { font-size: 3.2vw;}
       table.cd-table th { font-size: 4vw;}
       .cd-remain { font-size: 4vw;}
+      table.cd-table td { font-size: 3.2vw;}
     }
     @media (max-width: 450px) {
       .title { font-size: 9vw; }
@@ -108,6 +114,7 @@
       table.cd-table { font-size: 4vw;}
       table.cd-table th { font-size: 5vw;}
       .cd-remain { font-size: 5vw;}
+      table.cd-table td { font-size: 4vw;}
     }
     ::-webkit-scrollbar { width: 6px; background: #f0f0f0;}
     ::-webkit-scrollbar-thumb { background: var(--klein-extra-light); border-radius: 6px;}
@@ -121,7 +128,7 @@
         <thead>
           <tr>
             <th>名称</th>
-            <th>剩余/已过时间</th>
+            <th>剩余时间</th>
             <th>目标日期</th>
           </tr>
         </thead>
@@ -172,6 +179,7 @@ new Vue({
       this.countdowns = this.countdownList.map(item => {
         var targetDate = new Date(item.target);
         var remainMs = targetDate - now;
+        // 无论已过还是未到，均只显示绝对值
         var remainStr = formatRemain(remainMs);
         return {
           name: item.name,
