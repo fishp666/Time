@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+  box - sizing: border - box;
+}
+
+body {
+  font - family: Arial, sans - serif;
+  background - color: #f4f4f4;
+  color: #333;
+}
+
+.header {
+  background - color: #ccc;
+  padding: 15px;
+  text - align: center;
+}
+
+.header h2 {
+  margin - bottom: 5px;
+}
+
+.page - indicator {
+  font - size: 14px;
+  color: #666;
+}
+
+.countdown - item {
+  background - color: white;
+  margin: 15px;
+  padding: 15px;
+  border - radius: 5px;
+  box - shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify - content: space - between;
+  align - items: center;
+}
+
+.item - name {
+  font - size: 18px;
+}
+
+.progress - bar {
+  height: 10px;
+  background - color: #ccc;
+  border - radius: 5px;
+  flex: 1;
+  margin - right: 10px;
+}
+
+.countdown - days {
+  font - size: 18px;
+  color: #666;
+}
