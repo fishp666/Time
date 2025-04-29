@@ -5,20 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>倒计时</title>
   <style>
-    body { background: #fff; font-family: huangyou, sans-serif; color: #333; margin:0; padding:0;}
-    .container { max-width: 500px; margin: 60px auto; padding: 32px 20px 40px 20px; border-radius: 16px; }
-    .title { text-align: center; font-size: 48px; font-weight: bold; margin-bottom: 60px; letter-spacing: 6px;}
-    .countdown-item { display: flex; align-items: center; margin-bottom: 36px; }
-    .cd-label { width: 100px; font-size: 22px; text-align: right; margin-right: 16px;}
-    .cd-progress { flex: 1; height: 16px; background: #eee; border-radius: 8px; margin: 0 16px; overflow: hidden; }
-    .cd-bar { background: #2196f3; height: 100%; border-radius: 8px; transition: width 0.3s;}
-    .cd-info { width: 210px; font-size: 18px; color: #333; text-align: left;}
-    .cd-info strong { color: #e91e63; font-size: 22px;}
-    @media (max-width: 600px) {
-      .container { padding: 16px 5px 24px 5px;}
-      .title { font-size: 32px;}
-      .cd-label { width: 70px; font-size: 17px;}
-      .cd-info { width: 120px; font-size: 14px;}
+    html, body {
+      margin: 0; padding: 0;
+      width: 100vw; height: 100vh;
+      background: #fff;
+      font-family: huangyou, sans-serif;
+      color: #333;
+      box-sizing: border-box;
+    }
+    .container {
+      width: 100vw;
+      min-height: 100vh;
+      box-sizing: border-box;
+      padding: 3vw 4vw 6vw 4vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+    }
+    .title {
+      text-align: center;
+      font-size: 4vw;
+      font-weight: bold;
+      margin-bottom: 6vw;
+      letter-spacing: 0.5vw;
+    }
+    .countdown-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 4vw;
+      width: 100%;
+    }
+    .cd-label {
+      width: 15vw;
+      min-width: 80px;
+      font-size: 2vw;
+      text-align: right;
+      margin-right: 2vw;
+    }
+    .cd-progress {
+      flex: 1;
+      height: 2vw;
+      min-height: 18px;
+      background: #eee;
+      border-radius: 1vw;
+      margin: 0 2vw;
+      overflow: hidden;
+      position: relative;
+    }
+    .cd-bar {
+      background: #2196f3;
+      height: 100%;
+      border-radius: 1vw;
+      transition: width 0.3s;
+      position: absolute;
+      left: 0; top: 0;
+    }
+    .cd-info {
+      width: 18vw;
+      min-width: 120px;
+      font-size: 1.7vw;
+      color: #333;
+      text-align: left;
+      word-break: break-all;
+    }
+    .cd-info strong {
+      color: #e91e63;
+      font-size: 2vw;
+    }
+    @media (max-width: 700px) {
+      .title { font-size: 7vw; }
+      .cd-label { font-size: 4vw; min-width: 55px;}
+      .cd-info { font-size: 3.2vw; min-width: 80px;}
+      .cd-progress { height: 4vw; min-height: 10px;}
+      .cd-info strong { font-size: 4vw;}
+    }
+    @media (max-width: 450px) {
+      .title { font-size: 9vw; }
+      .cd-label { font-size: 5vw; min-width: 38px;}
+      .cd-info { font-size: 4vw; min-width: 60px;}
+      .cd-progress { height: 6vw; min-height: 6px;}
+      .cd-info strong { font-size: 5vw;}
     }
   </style>
 </head>
@@ -57,22 +124,22 @@ function formatDateStr(date) {
 }
 new Vue({
   el: "#root",
-  data() {
-    return {
-      created: new Date(), // 自动获取当前时间
-      countdownList: [
-        { name: "中考", target: "2025/12/01 00:00:00" },
-        { name: "高考", target: "2026/06/07 00:00:00" }
-      ],
-      countdowns: []
-    }
-  },
+data() {
+  return {
+    created: (new Date()).toISOString().slice(0, 10), 
+    countdownList: [
+      { name: "中考", target: "2025/12/01 00:00:00" },
+      { name: "高考", target: "2026/06/07 00:00:00" }
+    ],
+    countdowns: []
+  }
+},
   methods: {
     updateCountdowns() {
       var now = new Date();
       this.countdowns = this.countdownList.map(item => {
         var targetDate = new Date(item.target);
-        var createdDate = this.created;
+        var createdDate = new Date(this.created);
         var remainMs = targetDate - now;
         var totalMs = targetDate - createdDate;
         var usedMs = totalMs - remainMs;
