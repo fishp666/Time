@@ -190,6 +190,16 @@
       background: var(--klein-extra-light);
       border-radius: 6px;
     }
+  .grade-tag {
+  display: inline-block;
+  background-color: var(--klein-main);
+  color: white;
+  border-radius: 8px;
+  padding: 0.2em 0.5em;
+  font-size: 0.9em;
+  margin-right: 0.3em;
+  box-shadow: 0 1px 3px rgba(0, 47, 167, 0.3);
+}
   </style>
 </head>
 
@@ -243,12 +253,12 @@
         return {
           created: (new Date()).toISOString().slice(0, 10),
           countdownList: [
-            { name: "初一/初二 - 5月份月考<br>初三 - 5月中考适应性考试", target: "2025/05/26 09:00:00" },
-            { name: "初三 - 体育中考", target: "2025/05/21 00:00:00" },
-            { name: "初二 - 2025地生中考", target: "2025/06/27 09:00:00" },
-            { name: "初一/初二/初三 - 放暑假🥳", target: "2025/07/01 00:00:00" },
-            { name: "初二 - 2026中考", target: "2026/06/24 00:00:00" }
-          ],
+  { name: '<span class="grade-tag">初一</span>/<span class="grade-tag">初二</span> 5月份月考<br><span class="grade-tag">初三</span> 5月中考适应性考试', target: "2025/05/26 09:00:00" },
+  { name: '<span class="grade-tag">初三</span> 体育中考', target: "2025/05/21 00:00:00" },
+  { name: '<span class="grade-tag">初二</span> 2025地生中考<br><span class="grade-tag">初三</span> - 2025中考', target: "2025/06/27 09:00:00" },
+  { name: '<span class="grade-tag">初一</span>/<span class="grade-tag">初二</span>/<span class="grade-tag">初三</span> 放暑假🥳', target: "2025/07/01 00:00:00" },
+  { name: '<span class="grade-tag">初二</span> 2026中考', target: "2026/06/24 00:00:00" }
+],
           countdowns: []
         }
       },
