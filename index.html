@@ -10,7 +10,7 @@
       width: 100vw; height: 100vh;
       background: #fff;
       font-family: huangyou, sans-serif;
-      color: #333;
+      color: #002FA7;
       box-sizing: border-box;
       overflow-x: hidden;
     }
@@ -31,6 +31,7 @@
       font-weight: bold;
       margin-bottom: 4vw;
       letter-spacing: 0.5vw;
+      color: #002FA7;
     }
     .cd-table-wrap {
       width: 100%;
@@ -38,10 +39,9 @@
       margin: 0 auto;
       background: #fff;
       border-radius: 20px;
-      box-shadow: 0 2px 10px rgba(33,150,243,0.06);
-      border: 1.5px solid #b0d4f9;
+      box-shadow: 0 2px 10px rgba(0,47,167,0.08);
+      border: 1.5px solid #002FA7;
       overflow: hidden;
-      /* 保证不会溢出 */
       box-sizing: border-box;
     }
     table.cd-table {
@@ -51,6 +51,7 @@
       text-align: center;
       font-size: 1.7vw;
       background: #fff;
+      color: #002FA7;
     }
     table.cd-table th, table.cd-table td {
       padding: 1.2em 0.5em;
@@ -59,14 +60,14 @@
     table.cd-table th {
       background: #f6fafd;
       font-weight: bold;
-      color: #2196f3;
+      color: #002FA7;
       font-size: 2vw;
     }
     table.cd-table tr:last-child td {
       border-bottom: none;
     }
     .cd-remain {
-      color: #e91e63;
+      color: #002FA7;
       font-weight: bold;
       font-size: 2vw;
       letter-spacing: 1px;
@@ -113,7 +114,6 @@
   </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
 <script>
-function pad(num) { return num < 10 ? '0' + num : num; }
 function formatRemain(ms) {
   if (ms < 0) ms = 0;
   var days = Math.floor(ms / (24*60*60*1000));
@@ -123,8 +123,9 @@ function formatRemain(ms) {
   var minutes = Math.floor(ms / (60*1000));
   ms %= (60*1000);
   var seconds = Math.floor(ms / 1000);
-  return `${days}天 ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+  return `${days}天 ${hours}时 ${minutes}分 ${seconds}秒`;
 }
+function pad(num) { return num < 10 ? '0' + num : num; }
 function formatDateStr(date) {
   var d = new Date(date);
   return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
