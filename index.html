@@ -126,62 +126,26 @@
     }
 
     @media (max-width: 700px) {
-      .title {
-        font-size: 7vw;
-      }
+  .grade-tag {
+    font-size: 1.2em;
+    margin: 0 0.2em 0.3em 0;  /* 调整间距以适应小屏幕 */
+  }
+  
+  .grade-tag::after {
+    margin: 0.3em 0;  /* 小屏幕时减少横线的间距 */
+  }
+}
 
-      .current-time {
-        font-size: 3vw;
-      }
+@media (max-width: 450px) {
+  .grade-tag {
+    font-size: 1.5em;
+    margin: 0 0.1em 0.2em 0; /* 再次调整间距以适应更小的屏幕 */
+  }
 
-      .cd-table-wrap {
-        max-width: 98vw;
-      }
-
-      table.cd-table {
-        font-size: 3vw;
-      }
-
-      table.cd-table th,
-      table.cd-table td {
-        font-size: 1em;
-        padding: 0.8em 0.2em;
-      }
-
-      .cd-remain {
-        font-size: 4vw;
-      }
-
-      /* 这一段用以确保在小屏幕上能更好地换行 */
-      table.cd-table td {
-        white-space: normal;
-        word-wrap: break-word;
-      }
-    }
-
-    @media (max-width: 450px) {
-      .title {
-        font-size: 9vw;
-      }
-
-      .current-time {
-        font-size: 4vw;
-      }
-
-      .cd-table-wrap {
-        max-width: 100vw;
-      }
-
-      table.cd-table {
-        font-size: 4vw;
-      }
-
-      table.cd-table th,
-      table.cd-table td {
-        font-size: 0.9em;
-        padding: 0.5em 0.1em;
-      }
-
+  .grade-tag::after {
+    margin: 0.2em 0;  /* 更小屏幕时的横线间距 */
+  }
+}
       .cd-remain {
         font-size: 5vw;
       }
@@ -204,16 +168,30 @@
     }
 
     .grade-tag {
-      display: inline-block;
-      background-color: var(--klein-main);
-      color: white;
-      border-radius: 8px;
-      padding: 0.2em 0.6em;
-      font-size: 0.9em;
-      margin: 0 0.4em 0.4em 0; /* 增加右间距和底部间距 */
-      box-shadow: 0 1px 3px rgba(0, 47, 167, 0.3);
-      white-space: nowrap;
-    }
+  display: inline-block;
+  background-color: var(--klein-main);
+  color: white;
+  border-radius: 8px;
+  padding: 0.2em 0.6em;
+  font-size: 0.9em;
+  margin: 0 0.4em 0.4em 0;  /* 增加右间距和底部间距 */
+  box-shadow: 0 1px 3px rgba(0, 47, 167, 0.3);
+  white-space: nowrap;
+  position: relative;
+}
+
+.grade-tag::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background-color: rgba(0, 47, 167, 0.3); /* 淡蓝色短横线 */
+  width: 100%;
+  margin: 0.5em 0;
+}
+
+.grade-tag:last-child::after {
+  display: none; /* 最后一个标签不显示短横线 */
+}
   </style>
 </head>
 
