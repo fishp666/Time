@@ -30,7 +30,7 @@ function formatRemain(ms) {
   var minutes = Math.floor(ms / (60 * 1000));
   ms %= (60 * 1000);
   var seconds = Math.floor(ms / 1000);
-  const timeStr = `${days}天 ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+  const timeStr = `${days}天 ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`;
   return isPast ? `已过 ${timeStr}` : `剩余 ${timeStr}`;
 }
 
