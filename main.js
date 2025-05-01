@@ -33,40 +33,19 @@ new Vue({
   },
   methods: {
     updateCountdowns() {
-      var now = new Date();
-      this.countdowns = this.countdownList.map(item => {
-        // 支持多种未知时间标记
-        if (
-          item.target === "0000-00-00 00:00:00" ||
-          item.target === "0000/00/00 00:00:00" ||
-          item.target === "NaN" ||
-          item.target === "" ||
-          item.target === undefined
-        ) {
-          return {
-            name: item.name,
-            remainStr: "未知",
-            targetDateStr: "未知"
-          }
+          var now = new Date();
+          this.countdowns = this.countdownList.map(item => {
+            var targetDate = new Date(item.target);
+            var remainMs = targetDate - now;
+            var remainStr = formatRemain(remainMs);
+            return {
+              name: item.name,
+              remainStr: remainStr,
+              targetDateStr: formatDateStr(targetDate)
+            }
+          });
         }
-        var targetDate = new Date(item.target);
-        if (isNaN(targetDate.getTime())) {
-          return {
-            name: item.name,
-            remainStr: "未知",
-            targetDateStr: "未知"
-          }
-        }
-        var remainMs = targetDate - now;
-        var remainStr = formatRemain(remainMs);
-        return {
-          name: item.name,
-          remainStr: remainStr,
-          targetDateStr: formatDateStr(targetDate)
-        }
-      });
-    }
-  },
+      },
   mounted() {
     this.updateCountdowns();
     setInterval(this.updateCountdowns, 1000);
