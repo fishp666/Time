@@ -193,19 +193,20 @@ table.cd-table tr:nth-child(even) td {
 }
 
 .grade-tag {
-  display: inline-flex;                     /* ✅ 使用 flex 实现精确居中 */
+  display: inline-flex;                     /* 使用 flex 实现精确居中 */
   align-items: center;                     /* 垂直居中 */
   justify-content: center;                 /* 水平居中 */
   background-color: var(--klein-main);
   color: white;
-  border-radius: 999px;                    /* ✅ 更圆润气泡视觉 */
-  padding: 0.4em 0.8em;                    /* ✅ 上下左右 padding 更平衡 */
+  border-radius: 999px;                    /* 更圆润气泡视觉 */
+  padding: 0.4em 0.8em;                    /* 上下左右 padding 更平衡 */
   font-size: 0.9em;
   margin: 0 0.4em 0.4em 0;
   box-shadow: 0 1px 3px rgba(0, 47, 167, 0.3);
-  white-space: normal;                     /* ✅ 允许换行 */
-  word-break: break-word;                  /* ✅ 内容过长时断字 */
+  white-space: normal;                     /* 允许换行 */
+  word-break: break-word;                  /* 内容过长时断字 */
   text-align: center;
   max-width: 100%;                         /* 防止溢出父容器 */
-  line-height: 1.2;                        /* ✅ 防止换行后行距太紧 */
+  line-height: 1.2;                        /* 防止换行后行距太紧 */
+  vertical-align: middle;     /* 这一行让标签对齐周围文字行高 */
 }
