@@ -9,6 +9,13 @@
 <body>
   <div class="container" id="root">
     <div class="title">考试倒计时</div>
+    <audio id="bgm" src="https://www.example.com/music.mp3" autoplay loop muted></audio>
+<script>
+  document.body.addEventListener('click', function () {
+    var bgm = document.getElementById('bgm');
+    bgm.muted = false;
+  }, { once: true });
+</script>
     <div class="current-time"></div>
     <div class="cd-table-wrap">
       <table class="cd-table">
