@@ -6,7 +6,7 @@
   --klein-extra-light: #A2BFFF;
   --klein-bg: #f4f7fb;
   --klein-border: #4682BF;
-  --header-gradient: linear-gradient(30deg, #002FA7, #3559A8, #4682BF);
+  --header-gradient: linear-gradient(90deg, #A2BFFF, #B8D3F6); /* 修改为更平滑的渐变色 */
 }
 
 html, body {
@@ -35,7 +35,7 @@ html, body {
 
 .title {
   text-align: center;
-  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(2rem, 4vw, 3.5rem); /* 自动根据屏幕宽度调节字体 */
   font-weight: bold;
   margin-bottom: 4vw;
   letter-spacing: 0.5vw;
@@ -45,7 +45,7 @@ html, body {
 
 .current-time {
   margin-bottom: 2vw;
-  font-size: clamp(1.1rem, 1.8vw, 2rem);
+  font-size: clamp(1.1rem, 1.8vw, 2rem); /* 自动根据屏幕宽度调节字体 */
   color: var(--klein-main);
 }
 
@@ -65,7 +65,7 @@ table.cd-table {
   width: 100%;
   border-collapse: collapse;
   text-align: center;
-  font-size: clamp(1.1rem, 1.7vw, 1.5rem);
+  font-size: clamp(1.1rem, 1.7vw, 1.5rem); /* 自动根据屏幕宽度调节字体 */
   background: #fff;
   color: var(--klein-main);
   table-layout: fixed;
@@ -85,10 +85,10 @@ table.cd-table td {
 }
 
 table.cd-table th {
-  background: var(--header-gradient);
+  background: var(--header-gradient);  /* 使用新的浅色渐变 */
   color: #fff;
   font-weight: bold;
-  font-size: clamp(1.2rem, 2vw, 2rem);
+  font-size: clamp(1.2rem, 2vw, 2rem);  /* 自动根据屏幕宽度调节字体 */
   letter-spacing: 1px;
   text-shadow: 0 1px 3px var(--klein-medium);
   line-height: normal;
@@ -102,7 +102,7 @@ table.cd-table td {
   background: #fff;
   color: var(--klein-main);
   font-weight: 500;
-  font-size: 1.7vw;
+  font-size: clamp(1rem, 1.5vw, 1.8rem); /* 自动根据屏幕宽度调节字体 */
   transition: background 0.2s;
 }
 
