@@ -1,10 +1,14 @@
+function pad(num) {
+  return num < 10 ? '0' + num : num;
+}
+
 function formatDate(date) {
   const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  const hours = String(date.getHours()).padStart(2, '0');
-  const minutes = String(date.getMinutes()).padStart(2, '0');
-  const seconds = String(date.getSeconds()).padStart(2, '0');
+  const month = pad(date.getMonth() + 1);
+  const day = pad(date.getDate());
+  const hours = pad(date.getHours());
+  const minutes = pad(date.getMinutes());
+  const seconds = pad(date.getSeconds());
   return `现在是中国北京时间 ${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
@@ -13,6 +17,26 @@ function updateCurrentTime() {
   const now = new Date();
   const formattedTime = formatDate(now);
   currentTimeElement.textContent = formattedTime;
+}
+
+function formatRemain(ms) {
+  if (isNaN(ms)) return '未设置';
+  const isPast = ms < 0;
+  ms = Math.abs(ms);
+  var days = Math.floor(ms / (24 * 60 * 60 * 1000));
+  ms %= (24 * 60 * 60 * 1000);
+  var hours = Math.floor(ms / (60 * 60 * 1000));
+  ms %= (60 * 60 * 1000);
+  var minutes = Math.floor(ms / (60 * 1000));
+  ms %= (60 * 1000);
+  var seconds = Math.floor(ms / 1000);
+  const timeStr = `${days}天 ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+  return isPast ? `已过 ${timeStr}` : `剩余 ${timeStr}`;
+}
+
+function formatDateStr(date) {
+  if (isNaN(date.getTime())) return '';
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 }
 
 new Vue({
@@ -24,7 +48,6 @@ new Vue({
         { name: '<span class="grade-tag">初三</span> 体育中考', target: "2025/05/21 00:00:00" },
         { name: '<span class="grade-tag">初一 · 初二</span> 5月份月考<br><span class="grade-tag">初三</span> 5月中考适应性考试', target: "2025/05/26 09:00:00" },
         { name: '<span class="grade-tag">初二</span> 2025地生中考<br><span class="grade-tag">初三</span> 2025中考', target: "2025/06/27 09:00:00" },
-        { name: '<span class="grade-tag">初一 · 初二</span> 期末考试', target: "" },
         { name: '<span class="grade-tag">初一 · 初二 · 初三</span> 放暑假🥳', target: "2025/07/01 00:00:00" },
         { name: '<span class="grade-tag">初二</span> 2026中考', target: "2026/06/24 00:00:00" }
       ],
@@ -33,19 +56,25 @@ new Vue({
   },
   methods: {
     updateCountdowns() {
-          var now = new Date();
-          this.countdowns = this.countdownList.map(item => {
-            var targetDate = new Date(item.target);
-            var remainMs = targetDate - now;
-            var remainStr = formatRemain(remainMs);
-            return {
-              name: item.name,
-              remainStr: remainStr,
-              targetDateStr: formatDateStr(targetDate)
-            }
-          });
+      const now = new Date();
+      this.countdowns = this.countdownList.map(item => {
+        const targetDate = new Date(item.target);
+        const remainMs = targetDate - now;
+        return {
+          name: item.name,
+          remainMs: remainMs,
+          remainStr: formatRemain(remainMs),
+          targetDateStr: item.target ? formatDateStr(targetDate) : ''
         }
-      },
+      })
+      // 剩余时间从小到大排序，无效日期排最后
+      .sort((a, b) => {
+        if (isNaN(a.remainMs)) return 1;
+        if (isNaN(b.remainMs)) return -1;
+        return a.remainMs - b.remainMs;
+      });
+    }
+  },
   mounted() {
     this.updateCountdowns();
     setInterval(this.updateCountdowns, 1000);
@@ -53,24 +82,3 @@ new Vue({
     setInterval(updateCurrentTime, 1000);
   }
 });
-
-function formatRemain(ms) {
-  ms = Math.abs(ms);
-  var days = Math.floor(ms / (24 * 60 * 60 * 1000));
-  ms %= (24 * 60 * 60 * 1000);
-  var hours = Math.floor(ms / (60 * 60 * 1000));
-  ms %= (60 * 60 * 1000);
-  var minutes = Math.floor(ms / (60 * 1000));
-  ms %= (60 * 1000);
-  var seconds = Math.floor(ms / 1000);
-  return `${days}天 ${hours}:${minutes}:${seconds}`;
-}
-
-function pad(num) {
-  return num < 10 ? '0' + num : num;
-}
-
-function formatDateStr(date) {
-  var d = new Date(date);
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
-}
