@@ -21,8 +21,8 @@ new Vue({
     return {
       created: (new Date()).toISOString().slice(0, 10),
       countdownList: [
-        { name: '<span class="grade-tag">初一 · 初二</span> 5月份月考<br><span class="grade-tag">初三</span> 5月中考适应性考试', target: "2025/05/26 09:00:00" },
         { name: '<span class="grade-tag">初三</span> 体育中考', target: "2025/05/21 00:00:00" },
+        { name: '<span class="grade-tag">初一 · 初二</span> 5月份月考<br><span class="grade-tag">初三</span> 5月中考适应性考试', target: "2025/05/26 09:00:00" },
         { name: '<span class="grade-tag">初二</span> 2025地生中考<br><span class="grade-tag">初三</span> 2025中考', target: "2025/06/27 09:00:00" },
         { name: '<span class="grade-tag">初一 · 初二</span> 期末考试', target: "" },
         { name: '<span class="grade-tag">初一 · 初二 · 初三</span> 放暑假🥳', target: "2025/07/01 00:00:00" },
