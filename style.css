@@ -6,7 +6,7 @@
   --klein-extra-light: #A2BFFF;
   --klein-bg: #f4f7fb;
   --klein-border: #4682BF;
-  --header-gradient: linear-gradient(90deg, #002FA7 0%, #4682BF 50%, #A2BFFF 100%);
+  --header-gradient: linear-gradient(90deg, #002FA7, #3559A8, #4682BF);
 }
 
 html, body {
