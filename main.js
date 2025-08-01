@@ -45,7 +45,7 @@ new Vue({
     return {
       created: (new Date()).toISOString().slice(0, 10),
       countdownList: [
-        { name: '<span class="grade-tag">初三</span> 开学注册', target: "2026/08/24 00:00:00" },
+        { name: '<span class="grade-tag">初三</span> 开学注册', target: "2025/08/24 00:00:00" },
         { name: '<span class="grade-tag">初三</span> 中考', target: "2026/06/24 00:00:00" }
       ],
       countdowns: []
